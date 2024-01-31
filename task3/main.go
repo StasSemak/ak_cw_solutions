@@ -27,7 +27,7 @@ func main() {
 	var a, b, n float64 = 10, 20, 24
 	h := (b - a) / n
 
-	for i := 0; i < int(n); i++ {
+	for i := 0; i <= int(n); i++ {
 		x := a + float64(i)*h
 
 		fmt.Printf("%.4f\t\t", x)
