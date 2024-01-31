@@ -32,11 +32,11 @@ func main() {
 
 		fmt.Printf("%.4f\t\t", x)
 
-		for j := range fns {
+		for j, f := range fns {
 			if j == 4 {
-				fmt.Printf("%v\t\t", fns[j](x))
+				fmt.Printf("%v\t\t", f(x))
 			} else {
-				fmt.Printf("%.4f\t\t", fns[j](x))
+				fmt.Printf("%.4f\t\t", f(x))
 			}
 		}
 
