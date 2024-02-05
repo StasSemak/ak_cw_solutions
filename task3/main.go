@@ -27,6 +27,8 @@ func main() {
 	var a, b, n float64 = 10, 20, 24
 	h := (b - a) / n
 
+	fmt.Println("x\t\tF1(x)\t\t\tF2(x)\t\tF3(x)\t\tF4(x)\t\t\tF5(x)")
+
 	for i := 0; i <= int(n); i++ {
 		x := a + float64(i)*h
 
