@@ -29,7 +29,7 @@ func main() {
 
 	fmt.Println("x\t\tF1(x)\t\t\tF2(x)\t\tF3(x)\t\tF4(x)\t\t\tF5(x)")
 
-	for i := 0; i <= int(n); i++ {
+	for i := range int(n) {
 		x := a + float64(i)*h
 
 		fmt.Printf("%.4f\t\t", x)
