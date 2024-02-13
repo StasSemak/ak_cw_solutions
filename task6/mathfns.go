@@ -14,6 +14,19 @@ func det(m [][]float64) float64 {
 	return m[0][0]*m[1][1] - m[0][1]*m[1][0]
 }
 
+func multiply(a, b [][]float64) [][]float64 {
+	m := makeMatrix(len(a), len(b[0]))
+
+	for i := range m {
+		for j := range m[i] {
+			for k := range a[i] {
+				m[i][j] += a[i][k] * b[k][j]
+			}
+		}
+	}
+
+	return m
+}
 func multiplyRow(a [][]float64, b []float64) []float64 {
 	m := makeRowMatrix(len(a))
 
@@ -32,7 +45,7 @@ func reverse(m [][]float64) [][]float64 {
 
 	for i := range m {
 		for j := range m[0] {
-			mRev[j][i] = (math.Pow(-1, float64(i+j+2)) * det(subMatrix(m, i, j))) / d
+			mRev[j][i] = (math.Pow(-1, float64(i+j)) * det(subMatrix(m, i, j))) / d
 		}
 	}
 
@@ -73,18 +86,4 @@ func transpile(m [][]float64) [][]float64 {
 	}
 
 	return mt
-}
-
-func multiply(a, b [][]float64) [][]float64 {
-	m := makeMatrix(len(a), len(b[0]))
-
-	for i := range m {
-		for j := range m[i] {
-			for k := range a[i] {
-				m[i][j] += a[i][k] * b[k][j]
-			}
-		}
-	}
-
-	return m
 }
