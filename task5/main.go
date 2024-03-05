@@ -23,22 +23,32 @@ func sign(x float64) float64 {
 var ITER_LIMIT int = 5000
 
 func specificationMethod(a, b, e float64) (res float64, err error) {
-	for range ITER_LIMIT {
+	fmt.Println("i\ta\t\tb\t\tc\t\tb - a\t\tza\tzc\tz")
+	for i := range ITER_LIMIT {
 		za := sign(f(a))
-
 		c := (a + b) / 2
+
+		fmt.Printf("%v\t%.4f\t\t%.4f\t\t%.4f\t\t%.4f\t\t%v",
+			i, a, b, c, b-a, za)
+
 		if b-a <= e {
 			res = c
+			fmt.Println()
 			return
 		}
 
 		zc := sign(f(c))
+		fmt.Printf("\t%v", zc)
+
 		if zc == 0 {
 			res = c
+			fmt.Println()
 			return
 		}
 
 		z := sign(zc * za)
+		fmt.Printf("\t%v\n", z)
+
 		if z == 1 {
 			a = c
 		} else if z == -1 {
