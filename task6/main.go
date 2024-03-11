@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func reversedMatrix(a [][]float64, b []float64) []float64 {
 	return multiplyRow(reverse(a), b)
 }
@@ -31,13 +33,16 @@ func main() {
 
 	//method of reversed matrix
 	xRev := reversedMatrix(a, b)
+	fmt.Println("Method of reversed matrix:")
 	printMatrix([][]float64{xRev})
 
 	//kramer method
 	xKram := kramer(a, b)
+	fmt.Println("Kramer method:")
 	printMatrix([][]float64{xKram})
 
 	//method of smallest squares
 	xSm := smallestSquare(a, b)
+	fmt.Println("Method of smallest squares:")
 	printMatrix([][]float64{xSm})
 }
