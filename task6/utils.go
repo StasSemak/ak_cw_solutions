@@ -40,3 +40,11 @@ func replaceIWithB(a [][]float64, i int, b []float64) [][]float64 {
 
 	return m
 }
+
+func printMethodHeading(name string, a [][]float64, b []float64) {
+	fmt.Println(name)
+	fmt.Println("Coefficients matrix:")
+	printMatrix(a)
+	fmt.Println("Free members:")
+	printMatrix([][]float64{b})
+}

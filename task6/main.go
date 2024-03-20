@@ -3,24 +3,68 @@ package main
 import "fmt"
 
 func reversedMatrix(a [][]float64, b []float64) []float64 {
-	return multiplyRow(reverse(a), b)
+	printMethodHeading("METHOD OF REVERSED MATRIX\n", a, b)
+
+	reversed := reverse(a)
+	fmt.Println("\nReversed matrix:")
+	printMatrix(reversed)
+
+	result := multiplyRow(reversed, b)
+	fmt.Println("\nResult:")
+	printMatrix([][]float64{result})
+
+	return result
 }
 
 func kramer(a [][]float64, b []float64) []float64 {
+	printMethodHeading("KRAMER METHOD\n", a, b)
+
 	x := makeRowMatrix(len(b))
 	detA := det(a)
 
+	fmt.Printf("Coefficients matrix determinant: %v\n", detA)
+
 	for i := range x {
-		x[i] = det(replaceIWithB(a, i, b)) / detA
+		replaced := replaceIWithB(a, i, b)
+		replacedDet := det(replaced)
+
+		fmt.Printf("\nMatrix %v:\n", i+1)
+		printMatrix(replaced)
+		fmt.Printf("Matrix %v determinant: %v\n", i+1, replacedDet)
+
+		x[i] = replacedDet / detA
 	}
+
+	fmt.Println("\nResult:")
+	printMatrix([][]float64{x})
 
 	return x
 }
 
 func smallestSquare(a [][]float64, b []float64) []float64 {
-	at := transpile(a)
+	printMethodHeading("METHOD OF SMALLEST SQUARES\n", a, b)
 
-	return multiplyRow(reverse(multiply(at, a)), multiplyRow(at, b))
+	at := transpile(a)
+	fmt.Println("\nTranspiled coefficients matrix:")
+	printMatrix(at)
+
+	ata := multiply(at, a)
+	fmt.Println("\nProduct of non- & transpiled matrixes:")
+	printMatrix(ata)
+
+	reversedAta := reverse(ata)
+	fmt.Println("\nReversed product:")
+	printMatrix(reversedAta)
+
+	atb := multiplyRow(at, b)
+	fmt.Println("\nProduct of transpiled matrix & free members:")
+	printMatrix([][]float64{atb})
+
+	result := multiplyRow(reversedAta, atb)
+	fmt.Println("\nResult:")
+	printMatrix([][]float64{result})
+
+	return result
 }
 
 func main() {
@@ -32,17 +76,15 @@ func main() {
 	b := []float64{-10, 10, 3}
 
 	//method of reversed matrix
-	xRev := reversedMatrix(a, b)
-	fmt.Println("Method of reversed matrix:")
-	printMatrix([][]float64{xRev})
+	reversedMatrix(a, b)
+
+	fmt.Println("--------------------------------")
 
 	//kramer method
-	xKram := kramer(a, b)
-	fmt.Println("Kramer method:")
-	printMatrix([][]float64{xKram})
+	kramer(a, b)
+
+	fmt.Println("--------------------------------")
 
 	//method of smallest squares
-	xSm := smallestSquare(a, b)
-	fmt.Println("Method of smallest squares:")
-	printMatrix([][]float64{xSm})
+	smallestSquare(a, b)
 }
