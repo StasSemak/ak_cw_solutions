@@ -58,5 +58,18 @@ func main() {
 	a := det(subtituteColumn(xtx, 0, xty)) / det(xtx)
 	b := det(subtituteColumn(xtx, 1, xty)) / det(xtx)
 
-	fmt.Printf("y = %.4fx + %.4f\n", a, b)
+	fmt.Print("xi:\t")
+	for _, x := range xs {
+		fmt.Printf("%v\t", x)
+	}
+	fmt.Print("\nyi:\t")
+	for _, y := range ys {
+		fmt.Printf("%v\t", y)
+	}
+	fmt.Printf("\na:\t%v\nb:\t%v\na*xi+b:\t", a, b)
+	for _, x := range xs {
+		yi := a*x + b
+		fmt.Printf("%.4f\t", yi)
+	}
+	fmt.Println()
 }
